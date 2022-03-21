@@ -2,12 +2,22 @@ package com.thoughtworks.cashregister;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CashRegisterTest {
 
     @Test
-    public void dummyTest() {
-        assertEquals(1, 1);
+    public void shouldEquateApplesToRupeesHundred() {
+
+        CashRegister cashRegister = new CashRegister();
+        Item item = new Item("Apples",100.0);
+        List<Item> items = new ArrayList<>();
+        items.add(item);
+        Purchase purchase = new Purchase(items);
+        cashRegister.process(purchase);
+        assertTrue(cashRegister.called);
     }
 }
