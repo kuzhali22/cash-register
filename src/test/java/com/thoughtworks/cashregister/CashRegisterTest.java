@@ -1,23 +1,20 @@
 package com.thoughtworks.cashregister;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CashRegisterTest {
 
     @Test
-    public void shouldEquateApplesToRupeesHundred() {
+    public void checkIfPrinterIsInvokedWhenProcessIsCalled() {
 
-        CashRegister cashRegister = new CashRegister();
-        Item item = new Item("Apples",100.0);
-        List<Item> items = new ArrayList<>();
-        items.add(item);
-        Purchase purchase = new Purchase(items);
+        FakePrinter fakePrinter = new FakePrinter();
+        CashRegister cashRegister = new CashRegister(fakePrinter);
+        Purchase purchase = new Purchase(List.of(new Item("Apples", 100.0)));
+
         cashRegister.process(purchase);
-        assertTrue(cashRegister.called);
+
+        assertTrue(fakePrinter.called);
     }
 }

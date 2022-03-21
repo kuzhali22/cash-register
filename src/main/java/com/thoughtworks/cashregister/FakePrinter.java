@@ -1,17 +1,10 @@
 package com.thoughtworks.cashregister;
 
-public class FakePrinter extends Printer{
+public class FakePrinter extends Printer {
 
-    public static boolean called = false;
+    public boolean called;
 
-
-
-
-
-
-
-    public void print(String content){
-        super.print( content);
+    public void print(String content) {
         called = true;
     }
 
