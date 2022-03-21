@@ -1,6 +1,8 @@
 package com.thoughtworks.cashregister;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -17,4 +19,17 @@ public class CashRegisterTest {
 
         assertTrue(fakePrinter.called);
     }
+
+    @Test
+    public void checkIfPrinterIsInvokedWhenProcessIsCalledForEmptyList() {
+
+        FakePrinter fakePrinter = new FakePrinter();
+        CashRegister cashRegister = new CashRegister(fakePrinter);
+        Purchase purchase = new Purchase(Collections.emptyList());
+
+        cashRegister.process(purchase);
+
+        assertTrue(fakePrinter.called);
+    }
+
 }
