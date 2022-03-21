@@ -34,16 +34,16 @@ public class CashRegisterTest {
     }
 
     @Test
-    public void checkIfPurchaseDetailsArePrinted() {
+    public void checkIfPurchaseDetailsArePrintedWhenPrinterIsInvoked() {
 
         FakePrinter fakePrinter = new FakePrinter();
         CashRegister cashRegister = new CashRegister(fakePrinter);
         FakePurchase fakePurchase = new FakePurchase(Collections.emptyList());
+        fakePurchase.setString("Check Values");
 
         cashRegister.process(fakePurchase);
 
-        assertAll(() -> assertTrue(fakePrinter.called),
-                () -> assertEquals(fakePurchase.asString(), "Purchase called"));
+        assertEquals("Check Values",fakePurchase.asString());
     }
 
 }

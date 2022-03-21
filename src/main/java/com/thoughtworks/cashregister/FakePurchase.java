@@ -4,6 +4,7 @@ import java.util.List;
 
 public class FakePurchase extends Purchase{
 
+    public String itemValues;
 
     public FakePurchase(List<Item> items) {
         super(items);
@@ -11,6 +12,10 @@ public class FakePurchase extends Purchase{
 
     @Override
     public String asString() {
-        return "Purchase called";
+        return this.itemValues;
+    }
+
+    public void setString(String string){
+        this.itemValues = string;
     }
 }
