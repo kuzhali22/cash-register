@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CashRegisterTest {
 
@@ -30,6 +31,19 @@ public class CashRegisterTest {
         cashRegister.process(purchase);
 
         assertTrue(fakePrinter.called);
+    }
+
+    @Test
+    public void checkIfPurchaseDetailsArePrinted() {
+
+        FakePrinter fakePrinter = new FakePrinter();
+        CashRegister cashRegister = new CashRegister(fakePrinter);
+        FakePurchase fakePurchase = new FakePurchase(Collections.emptyList());
+
+        cashRegister.process(fakePurchase);
+
+        assertAll(() -> assertTrue(fakePrinter.called),
+                () -> assertEquals(fakePurchase.asString(), "Purchase called"));
     }
 
 }
